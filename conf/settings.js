@@ -43,6 +43,7 @@ const PAGES = {
 }
 
 const DEVSERVER = {
+  host: 'localhost',
   port: 777,
   proxyTarget: 'https://websharik.ru'
 }

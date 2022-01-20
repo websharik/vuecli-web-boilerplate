@@ -18,6 +18,9 @@ const {
   ENTRIES
 } = settings
 
+//fix raw @vue/cli ^5.0.0
+process.env.VUE_CLI_TEST = false
+
 /**
  * @type {import('@vue/cli-service').ProjectOptions}
  */
@@ -26,11 +29,9 @@ module.exports = {
   outputDir: PATHS.dist,
   filenameHashing: false,
   devServer: {
+    host: DEVSERVER.host,
     port: DEVSERVER.port,
-    open: true,
-    openPage: 'app.html' /*Object.values(PAGES)[0].filename .map(
-      page => page.filename
-    )*/,
+    open: Object.values(PAGES).map(page => page.filename),
     proxy: {
       '/': {
         secure: false,
@@ -49,8 +50,10 @@ module.exports = {
     //entries
     config.entry = ENTRIES
 
+    //enable minimize
+    config.optimization.minimize = true
     //rename vendors
-    config.optimization.splitChunks.cacheGroups.vendors.name = 'vendors'
+    config.optimization.splitChunks.cacheGroups.defaultVendors.name = 'vendors'
     //remove common
     delete config.optimization.splitChunks.cacheGroups.common
 
@@ -70,12 +73,14 @@ module.exports = {
   chainWebpack: config => {
     //move public to src/static
     config.plugin('copy').use(CopyWebpackPlugin, [
-      [
-        {
-          from: path.resolve(`${PATHS.src}/static`),
-          to: PATHS.dist
-        }
-      ]
+      {
+        patterns: [
+          {
+            from: path.resolve(`${PATHS.src}/static`),
+            to: PATHS.dist
+          }
+        ]
+      }
     ])
 
     //define merge
@@ -99,12 +104,12 @@ module.exports = {
       })
 
       //obfuscator
-      config
+      /*config
         .plugin('obfuscator')
-        .use(JavaScriptObfuscator, [OBFUSCATOR.config, OBFUSCATOR.excludes])
+        .use(JavaScriptObfuscator, [OBFUSCATOR.config, OBFUSCATOR.excludes])*/
 
       //prerender
-      PRERENDER.items.map(item => {
+      /*PRERENDER.items.map(item => {
         config.plugin('prerender').use(PrerenderSPAPlugin, [
           {
             staticDir: PATHS.dist,
@@ -126,7 +131,7 @@ module.exports = {
             })
           }
         ])
-      })
+      })*/
     }
   }
 }
