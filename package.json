@@ -34,6 +34,9 @@
     "sass-loader": "^8.0.2",
     "jsdom": "^19.0.0",
     "prerender-spa-plugin": "github:websharik/prerender-spa-plugin#v3.4.0.wp5",
-    "webpack-obfuscator": "^3.5.0"
+    "webpack-obfuscator": "^3.5.0",
+    "class-validator": "^0.13.2",
+    "tar": "^6.1.11",
+    "trim-newlines": "^4.0.2"
   }
 }
