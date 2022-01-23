@@ -104,12 +104,12 @@ module.exports = {
       })
 
       //obfuscator
-      /*config
+      config
         .plugin('obfuscator')
-        .use(JavaScriptObfuscator, [OBFUSCATOR.config, OBFUSCATOR.excludes])*/
+        .use(JavaScriptObfuscator, [OBFUSCATOR.config, OBFUSCATOR.excludes])
 
       //prerender
-      /*PRERENDER.items.map(item => {
+      PRERENDER.items.map(item => {
         config.plugin('prerender').use(PrerenderSPAPlugin, [
           {
             staticDir: PATHS.dist,
@@ -131,7 +131,7 @@ module.exports = {
             })
           }
         ])
-      })*/
+      })
     }
   }
 }
