@@ -33,7 +33,7 @@
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
     "jsdom": "^19.0.0",
-    "prerender-spa-plugin": "^3.4.0",
+    "prerender-spa-plugin": "github:websharik/prerender-spa-plugin#v3.4.0.wp5",
     "webpack-obfuscator": "^3.5.0"
   }
 }
