@@ -1,6 +1,7 @@
 {
   "root": true,
   "env": {
+    "browser": true,
     "node": true
   },
   "extends": ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
@@ -9,9 +10,19 @@
   },
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error",
-    "no-console": "warn",
-    "no-debugger": "warn",
-    "vue/multi-word-component-names": 0
+    "prettier/prettier": "warn",
+    "no-console": "off",
+    "no-debugger": "off",
+    "vue/multi-word-component-names": 0,
+    "no-unused-vars": "off",
+    "comma-dangle": ["error", "never"],
+    "linebreak-style": "off", // Неправильно работает в Windows.
+    "arrow-parens": "off", // Несовместимо с prettier
+    "object-curly-newline": "off", // Несовместимо с prettier
+    "no-mixed-operators": "off", // Несовместимо с prettier
+    "arrow-body-style": "off", // Это - не наш стиль?
+    "function-paren-newline": "off", // Несовместимо с prettier
+    "no-plusplus": "off",
+    "space-before-function-paren": 0 // Несовместимо с prettier
   }
 }

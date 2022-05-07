@@ -9,11 +9,18 @@ const publicPath = isLocal ? '/' : '/'
 
 const PATHS = {
   src: path.join(__dirname, '../src'),
-  dist: path.join(__dirname, '../dist')
+  dist: path.join(
+    __dirname,
+    '../' + 'dist' /*(process.env.SSR ? 'ssr' : 'dist')*/
+  )
 }
 
 const ENTRIES = {
-  app: `${PATHS.src}/scripts/app.js`
+  app: `${PATHS.src}/scripts/entries/app.js`
+}
+
+const ENTRIES_SSR = {
+  app_ssr: `${PATHS.src}/scripts/entries/app_ssr.js`
 }
 
 const ALIASES = {
@@ -90,7 +97,7 @@ const OBFUSCATOR = {
 
 const PRERENDER = {
   items: [
-    {
+    /*{
       template: 'app.html',
       name: 'app',
       selector: '#app',
@@ -98,7 +105,7 @@ const PRERENDER = {
       inject: {
         //msg: 'Hello world'
       }
-    }
+    }*/
   ],
   minify: {
     collapseBooleanAttributes: true,
@@ -122,6 +129,7 @@ module.exports = {
   publicPath,
   PATHS,
   ENTRIES,
+  ENTRIES_SSR,
   ALIASES,
   CONSTANTS,
   PAGES,

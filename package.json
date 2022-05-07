@@ -3,19 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "inspect-production": "vue inspect --mode production > webpack.config.js",
-    "inspect-development": "vue inspect --mode development > webpack.config.js",
+    "ssr": "node ssr.js",
+    "serve": "npm run serve:client",
+    "serve:client": "vue-cli-service serve",
+    "serve:server": "cross-env SSR=true vue-cli-service serve --no-clean",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vue-cli-service build",
+    "build:server": "cross-env SSR=true vue-cli-service build --no-clean",
+    "build-inspect:server": "cross-env SSR=true NODE_ENV=production vue-cli-service inspect > webpack.config.json",
     "lint": "vue-cli-service lint",
     "lint-fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "axios": "^0.25.0",
-    "core-js": "^3.20.3",
     "vue": "^3.2.27",
     "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vuex-map-fields": "^1.4.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0-rc.2",
@@ -26,17 +30,20 @@
     "@vue/compiler-sfc": "^3.2.27",
     "@vue/eslint-config-prettier": "^7.0.0",
     "babel-eslint": "^11.0.0-beta.2",
+    "class-validator": "^0.13.2",
     "eslint": "^8.7.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.3.0",
+    "jsdom": "^19.0.0",
     "node-sass": "^4.12.0",
+    "prerender-spa-plugin": "github:websharik/prerender-spa-plugin#v3.4.0.wp5",
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
-    "jsdom": "^19.0.0",
-    "prerender-spa-plugin": "github:websharik/prerender-spa-plugin#v3.4.0.wp5",
-    "webpack-obfuscator": "^3.5.0",
-    "class-validator": "^0.13.2",
     "tar": "^6.1.11",
-    "trim-newlines": "^4.0.2"
+    "trim-newlines": "^4.0.2",
+    "webpack-obfuscator": "^3.5.0",
+    "webpack-node-externals": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "core-js": "^3.20.3"
   }
 }
