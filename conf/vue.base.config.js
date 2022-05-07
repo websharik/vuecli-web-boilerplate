@@ -6,9 +6,6 @@ const {
   isProd
 } = require('./settings.js')
 
-//fix raw @vue/cli ^5.0.0
-process.env.VUE_CLI_TEST = false
-
 /**
  * @type {import('@vue/cli-service').ProjectOptions}
  */
